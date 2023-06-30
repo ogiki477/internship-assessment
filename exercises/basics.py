@@ -1,7 +1,16 @@
 from typing import List
 
-
 def collatz(n: int) -> List[int]:
+    sequence = [n]  # Start with n as the first value in the sequence
+    while n != 1:  # Continue until n becomes 1
+        if n % 2 == 0:  # If n is even
+            n = n // 2
+        else:  # If n is odd
+            n = 3 * n + 1
+        sequence.append(n)  # Add the new value of n to the sequence
+    return sequence
+
+
     """
     You're given a positive integer n. Write an algorithm that does the following:
         - If n is even, the algorithm divides n by 2. This is the new value of n
@@ -12,10 +21,15 @@ def collatz(n: int) -> List[int]:
     For example, if n = 3, the sequence of values is: 3 -> 10 -> 5 -> 16 -> 8 -> 4 -> 2 -> 1
     So, your function would return: [3, 10, 5, 16, 8, 4, 2, 1]
     """
-    pass
+
 
 
 def distinct_numbers(numbers: List[int]) -> int:
+    distinct = set(numbers)
+    return len(distinct)
+    
+
+    
     """
     You are given a list of integers (the list could be empty), calculate the number of distinct/unique values in the list.
 
