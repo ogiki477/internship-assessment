@@ -30,6 +30,7 @@ def translate_text(source_language, target_language, text, token):
         return f"Translation Error: {response.status_code}, {response.text}"
 
 def get_language_choice(message, choices):
+    
     while True:
         choice = input(message)
         if choice in choices:
@@ -40,8 +41,13 @@ def get_language_choice(message, choices):
             print("Invalid choice. Please try again.")
 
 def main():
-    
 
+
+    # choice = ""
+       
+    # if choice == 'quit':
+
+    #     sys.exit(0)
    
         auth_type = input("Choose authentication type (token or login-credentials): ")
 
@@ -58,13 +64,13 @@ def main():
             token = response.json()['access_token']
 
         source_language = get_language_choice("Please choose the source language: ",
-                                                ["English", "Luganda", "Runyankole", "Ateso", "Lugbara", "Acholi"])
+                                                ["English", "Luganda", "Runyankole", "Ateso", "Lugbara", "Acholi","quit"])
 
         if source_language == "English":
             target_language = get_language_choice("Please choose the target language (one of Luganda, Runyankole, Ateso, Lugbara, or Acholi): ",
                    
                    
-                                                    ["Luganda", "Runyankole", "Ateso", "Lugbara", "Acholi"])
+                                                    ["Luganda", "Runyankole", "Ateso", "Lugbara", "Acholi","quit"])
         
         else:
             target_language = "English"
