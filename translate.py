@@ -1,6 +1,7 @@
 import requests
 from dotenv import load_dotenv
 import os 
+from os import sys
 
 url = 'https://sunbird-ai-api-5bq6okiwgq-ew.a.run.app'
 
@@ -33,6 +34,8 @@ def get_language_choice(message, choices):
         choice = input(message)
         if choice in choices:
             return choice
+        elif choice == 'quit':
+            sys.exit(0)
         else:
             print("Invalid choice. Please try again.")
 
@@ -59,15 +62,27 @@ def main():
 
         if source_language == "English":
             target_language = get_language_choice("Please choose the target language (one of Luganda, Runyankole, Ateso, Lugbara, or Acholi): ",
+                   
+                   
                                                     ["Luganda", "Runyankole", "Ateso", "Lugbara", "Acholi"])
+        
         else:
             target_language = "English"
+            
 
         text = input("Enter the text to translate: ")
 
         translated_text = translate_text(source_language, target_language, text, token)
 
         print("Translated text:", translated_text)
+        
+        translated_text = translate_text(target_language,source_language, text, token)
+
+        print("Translated text From English Back to the source Language:", translated_text)
+        
 
 if __name__ == "__main__":
+
     main()
+
+
